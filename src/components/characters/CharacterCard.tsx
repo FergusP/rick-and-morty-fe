@@ -19,7 +19,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
       whileHover={{ y: -4 }}
       transition={{ duration: 0.2 }}
     >
-      <Link href={`/character/${character.id}`}>
+      <Link href={`/characters/${character.id}`}>
         <div className="bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl overflow-hidden hover:ring-2 hover:ring-green-500 transition-all cursor-pointer group shadow-sm dark:shadow-none">
           <div className="relative aspect-square">
             <Image

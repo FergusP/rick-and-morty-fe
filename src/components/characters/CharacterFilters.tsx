@@ -8,10 +8,13 @@ interface CharacterFiltersProps {
   status: string;
   species: string;
   gender: string;
+  showFavorites: boolean;
+  favoritesCount: number;
   onSearchChange: (value: string) => void;
   onStatusChange: (value: string) => void;
   onSpeciesChange: (value: string) => void;
   onGenderChange: (value: string) => void;
+  onFavoritesToggle: () => void;
 }
 
 const statusOptions = [
@@ -45,19 +48,42 @@ export function CharacterFilters({
   status,
   species,
   gender,
+  showFavorites,
+  favoritesCount,
   onSearchChange,
   onStatusChange,
   onSpeciesChange,
   onGenderChange,
+  onFavoritesToggle,
 }: CharacterFiltersProps) {
   return (
     <div className="flex flex-col gap-2 sm:gap-4 mb-4 sm:mb-8">
-      <div className="flex-1">
-        <SearchInput
-          value={search}
-          onChange={onSearchChange}
-          placeholder="Search characters..."
-        />
+      <div className="flex gap-2">
+        <div className="flex-1">
+          <SearchInput
+            value={search}
+            onChange={onSearchChange}
+            placeholder="Search characters..."
+          />
+        </div>
+        <button
+          onClick={onFavoritesToggle}
+          className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-1.5 shrink-0 ${
+            showFavorites
+              ? 'bg-red-500 text-white'
+              : 'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-red-400'
+          }`}
+        >
+          <span>{showFavorites ? '❤️' : '🤍'}</span>
+          <span className="hidden sm:inline">Favorites</span>
+          {favoritesCount > 0 && (
+            <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+              showFavorites ? 'bg-white/20' : 'bg-gray-200 dark:bg-gray-700'
+            }`}>
+              {favoritesCount}
+            </span>
+          )}
+        </button>
       </div>
       <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-4">
         <FilterSelect

@@ -18,10 +18,10 @@ export function Header() {
           <span className="font-bold text-sm sm:text-xl text-green-600 dark:text-green-400">Rick & Morty</span>
         </Link>
         <nav className="flex items-center gap-2 sm:gap-4">
-          <Link href="/" className="hidden sm:block text-sm sm:text-base text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+          <Link href="/characters" className="text-sm sm:text-base text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">
             Characters
           </Link>
-          <Link href="/episodes" className="hidden sm:block text-sm sm:text-base text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">
+          <Link href="/episodes" className="text-sm sm:text-base text-gray-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 transition-colors">
             Episodes
           </Link>
           <button

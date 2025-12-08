@@ -97,7 +97,7 @@ export default function EpisodeDetailPage() {
           {characters.map((character) => (
             <Link
               key={character.id}
-              href={`/character/${character.id}`}
+              href={`/characters/${character.id}`}
               className="group"
             >
               <motion.div
