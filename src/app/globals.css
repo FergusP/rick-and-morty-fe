@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --portal-green: #97ce4c;
+  --status-alive: #55cc44;
+  --status-dead: #d63d2e;
+  --status-unknown: #9e9e9e;
+}
