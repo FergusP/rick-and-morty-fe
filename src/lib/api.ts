@@ -1,6 +1,6 @@
 import { Character, Episode, APIResponse, CharacterFilters, EpisodeFilters } from '@/types';
 
-const BASE_URL = 'https://rickandmortyapi.com/api';
+const BASE_URL = '/api';
 
 export async function getCharacters(filters: CharacterFilters = {}): Promise<APIResponse<Character>> {
   const params = new URLSearchParams();
@@ -36,8 +36,8 @@ export async function getCharacter(id: number): Promise<Character> {
   return res.json();
 }
 
-export async function getEpisodeName(url: string): Promise<string> {
-  const res = await fetch(url);
+export async function getEpisodeName(id: number): Promise<string> {
+  const res = await fetch(`${BASE_URL}/episode/${id}`);
   if (!res.ok) return 'Unknown';
   const data = await res.json();
   return data.name;
@@ -81,6 +81,7 @@ export async function getMultipleEpisodes(ids: number[]): Promise<Episode[]> {
     const ep = await getEpisode(ids[0]);
     return [ep];
   }
+  // Fetch multiple IDs via the proxy (comma-separated)
   const res = await fetch(`${BASE_URL}/episode/${ids.join(',')}`);
   if (!res.ok) return [];
   return res.json();
@@ -92,6 +93,7 @@ export async function getMultipleCharacters(ids: number[]): Promise<Character[]>
     const char = await getCharacter(ids[0]);
     return [char];
   }
+  // Fetch multiple IDs via the proxy (comma-separated)
   const res = await fetch(`${BASE_URL}/character/${ids.join(',')}`);
   if (!res.ok) return [];
   return res.json();

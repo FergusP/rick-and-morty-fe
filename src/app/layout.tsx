@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   description: 'Explore characters and episodes from the Rick and Morty universe',
   keywords: ['Rick and Morty', 'characters', 'episodes', 'cartoon', 'Adult Swim'],
   authors: [{ name: 'Rick & Morty Explorer' }],
+  icons: {
+    icon: '/favicon.svg',
+  },
   openGraph: {
     title: 'Rick & Morty Explorer',
     description: 'Explore characters and episodes from the Rick and Morty universe',
