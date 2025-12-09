@@ -1,64 +1,67 @@
-import Link from 'next/link';
-import type { Metadata } from 'next';
+'use client';
 
-export const metadata: Metadata = {
-  title: 'Rick & Morty Explorer - Discover the Multiverse',
-  description: 'Explore characters, episodes, and locations from the Rick and Morty universe. Your portal to infinite dimensions.',
-};
+import { useRef } from 'react';
+import Link from 'next/link';
+import { useLandingAnimations } from '@/hooks/useLandingAnimations';
 
 export default function LandingPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const statsRef = useLandingAnimations(containerRef);
+
   return (
-    <div className="min-h-[calc(100vh-64px)] flex flex-col items-center justify-center px-4 sm:px-6 relative overflow-hidden">
-      {/* Background portal effect */}
+    <div ref={containerRef} className="min-h-[calc(100vh-64px)] flex items-center justify-center px-4 relative overflow-hidden">
+      {/* Portal Background */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[600px] h-[600px] rounded-full bg-gradient-to-r from-green-500/20 to-cyan-500/20 blur-3xl animate-pulse" />
+        <div className="portal-glow absolute w-[500px] h-[500px] sm:w-[600px] sm:h-[600px] rounded-full bg-gradient-to-br from-[var(--portal-green)]/20 to-[var(--portal-cyan)]/10 blur-3xl" />
+        <svg className="absolute w-[350px] h-[350px] sm:w-[500px] sm:h-[500px]" viewBox="0 0 200 200">
+          <circle className="ring-1" cx="100" cy="100" r="95" fill="none" stroke="var(--portal-green)" strokeWidth="0.5" strokeDasharray="4 8" opacity="0.3" style={{ transformOrigin: 'center' }} />
+          <circle className="ring-2" cx="100" cy="100" r="75" fill="none" stroke="var(--portal-cyan)" strokeWidth="1" strokeDasharray="2 6" opacity="0.4" style={{ transformOrigin: 'center' }} />
+          <circle className="ring-3" cx="100" cy="100" r="55" fill="none" stroke="var(--portal-green)" strokeWidth="1.5" opacity="0.5" style={{ transformOrigin: 'center' }} />
+          <circle cx="100" cy="100" r="30" fill="url(#portalGradient)" opacity="0.4" />
+          <defs>
+            <radialGradient id="portalGradient">
+              <stop offset="0%" stopColor="var(--portal-green)" stopOpacity="0.6" />
+              <stop offset="100%" stopColor="transparent" />
+            </radialGradient>
+          </defs>
+        </svg>
       </div>
 
+      {/* Content */}
       <div className="relative z-10 text-center max-w-3xl mx-auto">
-        {/* Logo/Title */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold mb-6">
-          <span className="text-green-500">Rick</span>
-          <span className="text-gray-600 dark:text-gray-400"> & </span>
-          <span className="text-cyan-500">Morty</span>
+        <h1 className="hero-title text-5xl sm:text-7xl md:text-8xl font-black mb-4 tracking-tight text-gradient">
+          Rick & Morty
         </h1>
-
-        <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-4">
-          Explorer
+        <p className="hero-subtitle text-xl sm:text-2xl font-medium text-[var(--text-secondary)] mb-6">
+          Multiverse Explorer
         </p>
-
-        <p className="text-gray-500 dark:text-gray-400 mb-10 max-w-xl mx-auto">
-          Wubba lubba dub dub! Dive into the multiverse and explore all your favorite characters and episodes from across infinite dimensions.
+        <p className="hero-description text-[var(--text-muted)] mb-12 max-w-xl mx-auto leading-relaxed">
+          Wubba lubba dub dub! Dive into the multiverse and discover characters and episodes from infinite dimensions.
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Link
-            href="/characters"
-            className="px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-bold rounded-xl transition-all hover:scale-105 shadow-lg shadow-green-600/25"
-          >
+        <div className="flex flex-col sm:flex-row items-center gap-3 justify-center mb-10">
+          <Link href="/characters" className="cta-btn btn-primary px-6 py-3 text-sm sm:text-base font-semibold inline-block">
             Explore Characters
           </Link>
-          <Link
-            href="/episodes"
-            className="px-8 py-4 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-gray-900 dark:text-white font-bold rounded-xl transition-all hover:scale-105"
-          >
+          <Link href="/episodes" className="cta-btn btn-secondary px-6 py-3 text-sm sm:text-base font-semibold inline-block">
             Browse Episodes
           </Link>
         </div>
 
         {/* Stats */}
-        <div className="mt-16 grid grid-cols-3 gap-4 sm:gap-8 text-center">
-          <div>
-            <p className="text-2xl sm:text-4xl font-bold text-green-500">826</p>
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Characters</p>
+        <div className="grid grid-cols-3 gap-6 sm:gap-12 border-t border-[var(--border-color)] pt-8">
+          <div className="stat-item">
+            <span ref={(el) => { statsRef.current.chars = el; }} className="block text-3xl sm:text-5xl font-bold text-[var(--portal-green)]">0</span>
+            <span className="text-xs sm:text-sm text-[var(--text-muted)] uppercase tracking-wider">Characters</span>
           </div>
-          <div>
-            <p className="text-2xl sm:text-4xl font-bold text-cyan-500">51</p>
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Episodes</p>
+          <div className="stat-item">
+            <span ref={(el) => { statsRef.current.eps = el; }} className="block text-3xl sm:text-5xl font-bold text-[var(--portal-cyan)]">0</span>
+            <span className="text-xs sm:text-sm text-[var(--text-muted)] uppercase tracking-wider">Episodes</span>
           </div>
-          <div>
-            <p className="text-2xl sm:text-4xl font-bold text-purple-500">126</p>
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Locations</p>
+          <div className="stat-item">
+            <span ref={(el) => { statsRef.current.locs = el; }} className="block text-3xl sm:text-5xl font-bold text-purple-500">0</span>
+            <span className="text-xs sm:text-sm text-[var(--text-muted)] uppercase tracking-wider">Locations</span>
           </div>
         </div>
       </div>

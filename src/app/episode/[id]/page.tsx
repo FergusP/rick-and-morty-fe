@@ -44,7 +44,7 @@ export default function EpisodeDetailPage() {
 
   if (loading) {
     return (
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
+      <div className="max-w-4xl mx-auto px-5 sm:px-6 py-4 sm:py-8">
         <Skeleton className="h-6 w-32 mb-6" />
         <Skeleton className="h-10 w-3/4 mb-4" />
         <Skeleton className="h-6 w-1/2 mb-8" />
@@ -59,7 +59,7 @@ export default function EpisodeDetailPage() {
 
   if (error || !episode) {
     return (
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-16 text-center">
+      <div className="max-w-4xl mx-auto px-5 sm:px-6 py-16 text-center">
         <p className="text-6xl mb-4">📺</p>
         <p className="text-xl text-red-400">{error || 'Episode not found'}</p>
         <Link href="/episodes" className="mt-4 inline-block text-green-600 dark:text-green-400 hover:underline">
@@ -73,7 +73,7 @@ export default function EpisodeDetailPage() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="max-w-4xl mx-auto px-4 sm:px-6 py-4 sm:py-8"
+      className="max-w-4xl mx-auto px-5 sm:px-6 py-4 sm:py-8"
     >
       <Link href="/episodes" className="text-green-600 dark:text-green-400 hover:underline mb-4 sm:mb-6 inline-block text-sm sm:text-base">
         ← Back to episodes

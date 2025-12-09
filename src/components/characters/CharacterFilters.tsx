@@ -57,8 +57,8 @@ export function CharacterFilters({
   onFavoritesToggle,
 }: CharacterFiltersProps) {
   return (
-    <div className="flex flex-col gap-2 sm:gap-4 mb-4 sm:mb-8">
-      <div className="flex gap-2">
+    <div className="flex flex-col gap-3 sm:gap-4 mb-6 sm:mb-8">
+      <div className="flex gap-3">
         <div className="flex-1">
           <SearchInput
             value={search}
@@ -68,24 +68,26 @@ export function CharacterFilters({
         </div>
         <button
           onClick={onFavoritesToggle}
-          className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-1.5 shrink-0 ${
+          className={`px-3 sm:px-4 py-2.5 rounded-lg font-medium text-sm transition-all flex items-center gap-2 shrink-0 ${
             showFavorites
-              ? 'bg-red-500 text-white'
-              : 'bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:border-red-400'
+              ? 'bg-red-500 text-white shadow-lg shadow-red-500/25'
+              : 'bg-[var(--bg-secondary)] border border-[var(--border-color)] text-[var(--text-primary)] hover:border-red-400'
           }`}
         >
-          <span>{showFavorites ? '❤️' : '🤍'}</span>
+          <svg className="w-4 h-4" fill={showFavorites ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+          </svg>
           <span className="hidden sm:inline">Favorites</span>
           {favoritesCount > 0 && (
             <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-              showFavorites ? 'bg-white/20' : 'bg-gray-200 dark:bg-gray-700'
+              showFavorites ? 'bg-white/20' : 'bg-[var(--bg-tertiary)]'
             }`}>
               {favoritesCount}
             </span>
           )}
         </button>
       </div>
-      <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-4">
+      <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-3">
         <FilterSelect
           value={status}
           onChange={onStatusChange}

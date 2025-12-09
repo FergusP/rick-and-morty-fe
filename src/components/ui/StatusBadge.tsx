@@ -2,16 +2,16 @@ interface StatusBadgeProps {
   status: 'Alive' | 'Dead' | 'unknown';
 }
 
-const statusStyles = {
-  Alive: 'bg-green-500',
-  Dead: 'bg-red-500',
-  unknown: 'bg-gray-500',
-};
-
 export function StatusBadge({ status }: StatusBadgeProps) {
+  const statusClass = {
+    Alive: 'status-alive',
+    Dead: 'status-dead',
+    unknown: 'status-unknown',
+  }[status];
+
   return (
-    <span className="flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm">
-      <span className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full ${statusStyles[status]}`} />
+    <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium ${statusClass}`}>
+      <span className="w-1.5 h-1.5 rounded-full bg-current" />
       {status}
     </span>
   );

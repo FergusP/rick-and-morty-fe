@@ -1,79 +1,54 @@
-'use client';
-
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 export default function NotFound() {
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center px-4 text-center">
+    <div className="min-h-[80vh] flex flex-col items-center justify-center px-5 text-center">
       {/* Portal Animation */}
-      <motion.div
-        className="relative mb-8"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-      >
-        <div className="w-48 h-48 sm:w-64 sm:h-64 rounded-full bg-gradient-to-br from-green-400 via-green-500 to-emerald-600 opacity-80 blur-sm" />
-        <div className="absolute inset-4 rounded-full bg-gradient-to-br from-green-300 via-emerald-400 to-green-600 opacity-90" />
-        <div className="absolute inset-8 rounded-full bg-gradient-to-br from-black via-gray-900 to-black flex items-center justify-center">
-          <motion.span
-            className="text-6xl sm:text-8xl font-bold text-green-400"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ delay: 0.3, type: 'spring', stiffness: 200 }}
-          >
+      <div className="relative mb-8 w-48 h-48 sm:w-64 sm:h-64">
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--portal-green)] via-[var(--portal-cyan)] to-[var(--portal-green-dark)] animate-portal-rotate opacity-30 blur-xl" />
+        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[var(--portal-green)] to-[var(--portal-cyan)] opacity-20 animate-portal-pulse" />
+        <div className="absolute inset-4 sm:inset-6 rounded-full bg-gradient-to-br from-[var(--portal-green-light)] via-[var(--portal-green)] to-[var(--portal-cyan)] opacity-40" />
+        <div className="absolute inset-10 sm:inset-14 rounded-full bg-[var(--bg-primary)] flex items-center justify-center">
+          <span className="text-5xl sm:text-7xl font-bold text-gradient">
             404
-          </motion.span>
+          </span>
         </div>
-      </motion.div>
+      </div>
 
       {/* Message */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5 }}
-      >
-        <h1 className="text-2xl sm:text-4xl font-bold mb-4">
-          <span className="text-green-600 dark:text-green-400">Wubba Lubba</span> Dub Dub!
+      <div>
+        <h1 className="text-2xl sm:text-4xl font-bold mb-3">
+          <span className="text-gradient">Wubba Lubba</span> Dub Dub!
         </h1>
-        <p className="text-gray-600 dark:text-gray-400 text-lg mb-2">
-          Looks like you've fallen through the wrong portal, Morty!
+        <p className="text-[var(--text-secondary)] text-base sm:text-lg mb-2">
+          Looks like you&apos;ve fallen through the wrong portal, Morty!
         </p>
-        <p className="text-gray-500 dark:text-gray-500 mb-8">
-          This dimension doesn't exist... yet.
+        <p className="text-[var(--text-muted)] text-sm sm:text-base mb-8">
+          This dimension doesn&apos;t exist... yet.
         </p>
-      </motion.div>
+      </div>
 
       {/* Actions */}
-      <motion.div
-        className="flex flex-col sm:flex-row gap-4"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8 }}
-      >
+      <div className="flex flex-col sm:flex-row gap-3">
         <Link
           href="/"
-          className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors"
+          className="btn-primary px-6 py-3 text-sm sm:text-base"
         >
-          🧪 Back to C-137
+          Back to C-137
         </Link>
         <Link
-          href="/episodes"
-          className="px-6 py-3 bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 font-medium rounded-lg transition-colors"
+          href="/characters"
+          className="btn-secondary px-6 py-3 text-sm sm:text-base"
         >
-          📺 Watch Episodes
+          Browse Characters
         </Link>
-      </motion.div>
+      </div>
 
       {/* Rick Quote */}
-      <motion.p
-        className="mt-12 text-sm text-gray-400 dark:text-gray-600 italic max-w-md"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-      >
-        "Nobody exists on purpose. Nobody belongs anywhere. Everybody's gonna die.
-        Come watch TV." — Rick Sanchez
-      </motion.p>
+      <p className="mt-12 text-sm text-[var(--text-muted)] italic max-w-md card px-6 py-4">
+        &quot;Nobody exists on purpose. Nobody belongs anywhere. Everybody&apos;s gonna die.
+        Come watch TV.&quot; — Rick Sanchez
+      </p>
     </div>
   );
 }

@@ -4,17 +4,20 @@ interface SkeletonProps {
 
 export function Skeleton({ className = '' }: SkeletonProps) {
   return (
-    <div className={`animate-pulse bg-gray-300 dark:bg-gray-700 rounded ${className}`} />
+    <div className={`skeleton rounded ${className}`} />
   );
 }
 
 export function CharacterCardSkeleton() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-sm dark:shadow-none">
-      <Skeleton className="w-full aspect-square" />
-      <div className="p-4 space-y-2">
-        <Skeleton className="h-6 w-3/4" />
-        <Skeleton className="h-4 w-1/2" />
+    <div className="card overflow-hidden">
+      <Skeleton className="w-full aspect-square rounded-none" />
+      <div className="p-4 space-y-3">
+        <Skeleton className="h-5 w-3/4 rounded-md" />
+        <div className="flex justify-between">
+          <Skeleton className="h-4 w-16 rounded-full" />
+          <Skeleton className="h-4 w-12 rounded-md" />
+        </div>
       </div>
     </div>
   );
