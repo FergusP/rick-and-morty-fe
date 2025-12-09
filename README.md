@@ -4,7 +4,7 @@ A Next.js application to explore characters and episodes from the Rick and Morty
 
 ## Live Demo
 
-[https://rick-and-morty-fe.pages.dev](https://rick-and-morty-fe.pages.dev)
+[https://rickandmorty.ferguspatricio.workers.dev/](https://rickandmorty.ferguspatricio.workers.dev/)
 
 ## Tech Stack
 
@@ -50,14 +50,14 @@ Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ### Scripts
 
-| Command            | Description                    |
-| ------------------ | ------------------------------ |
-| `pnpm dev`         | Start development server       |
-| `pnpm build`       | Build for production           |
-| `pnpm build:worker`| Build for Cloudflare Workers   |
-| `pnpm test`        | Run tests in watch mode        |
-| `pnpm test:run`    | Run tests once                 |
-| `pnpm lint`        | Run ESLint                     |
+| Command             | Description                  |
+| ------------------- | ---------------------------- |
+| `pnpm dev`          | Start development server     |
+| `pnpm build`        | Build for production         |
+| `pnpm build:worker` | Build for Cloudflare Workers |
+| `pnpm test`         | Run tests in watch mode      |
+| `pnpm test:run`     | Run tests once               |
+| `pnpm lint`         | Run ESLint                   |
 
 ## Project Structure
 
